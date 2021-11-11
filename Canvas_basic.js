@@ -14,25 +14,35 @@ class Canvas_basic{
 
     constructor(canvasId, height, width){
         this.canvasId = canvasId;
-        this.height = height;
-        this.width = width;
+        this._height = height;
+        this._width = width;
         this.CanvasElement = document.querySelector(this.canvasId);
         this.util = document.body.querySelector(this.canvasId);
         this.ctx = this.util.getContext('2d');
-        this.CanvasElement.style.width = this.width + 'px';
-        this.CanvasElement.style.height = this.height + 'px';
+        this.CanvasElement.style.width = this._width + 'px';
+        this.CanvasElement.style.height = this._height + 'px';
     }
 
     get context(){return this.ctx;}
     get Element(){return this.CanvasElement;}
-    get Height(){return this.height;}
-    get width(){return this.width;}
+    get Height(){return this._height;}
+    get width(){return this._width;}
 
     initialize(){
         // May be overloaded.
         this.ctx.fillStyle = "#000";
-        this.ctx.fillRect(0,0,this.width,this.height);
+        this.ctx.fillRect(0,0,this._width,this._height);
     }
 
+    resize(height,width){
+        if(height<1 || width<1){
+            console.log("resize failed. Please call with valid height and width");
+            return;
+        }
+        this._height = height;
+        this._width = width;
+        this.CanvasElement.style.width = this._width + 'px';
+        this.CanvasElement.style.height = this._height + 'px';
+    }
 
 }
