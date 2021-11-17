@@ -1,3 +1,4 @@
+//製作途中です。
 class MessageBox{
 
     constructor(ctx,cvsHeight,cvsWidth,messages,speed,font){
